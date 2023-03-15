@@ -5,7 +5,7 @@ from flask_restful import Api, Resource
 import os
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db?charset=utf8'
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 api = Api(app)
@@ -62,4 +62,4 @@ api.add_resource(PostResource, '/posts/<int:post_id>')
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-        app.run(debug=True, host=os.getenv('HOST'), port=int(os.getenv('PORT')))
+        app.run(debug=True, host='0.0.0.0', port=5000)

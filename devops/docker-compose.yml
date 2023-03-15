@@ -8,6 +8,8 @@ services:
       - URL=https://testpost.aledev.ru/
       - HOST=0.0.0.0
       - PORT=5000
+    volumes:
+      - /database:/instance
     networks:
       - main
     ports:
