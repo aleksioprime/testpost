@@ -1,6 +1,6 @@
 # https://certbot.eff.org/instructions?ws=nginx&os=ubuntufocal
 server {
-	server_name contestbot.aledev.ru;
+	server_name testpost.aledev.ru;
 
 	location / {
 		proxy_pass http://172.18.0.2:5000;
@@ -16,7 +16,7 @@ server {
 }
 
 server {
-    if ($host = contestbot.aledev.ru) {
+    if ($host = testpost.aledev.ru) {
         return 301 https://$host$request_uri;
     } # managed by Certbot
 
