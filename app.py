@@ -28,7 +28,7 @@ posts_schema = PostSchema(many=True)
 class PostListResource(Resource):
     def get(self):
         posts = Post.query.all()
-        return posts_schema.dump(posts, ensure_ascii=False)
+        return posts_schema.load(posts)
     def post(self):
         new_post = Post(
             title=request.json['title'],
@@ -36,12 +36,12 @@ class PostListResource(Resource):
         )
         db.session.add(new_post)
         db.session.commit()
-        return post_schema.dump(new_post, ensure_ascii=False)
+        return post_schema.load(new_post)
     
 class PostResource(Resource):
     def get(self, post_id):
         post = Post.query.get_or_404(post_id)
-        return post_schema.dump(post, ensure_ascii=False)
+        return post_schema.load(post)
     def patch(self, post_id):
         post = Post.query.get_or_404(post_id)
         if 'title' in request.json:
@@ -49,7 +49,7 @@ class PostResource(Resource):
         if 'content' in request.json:
             post.content = request.json['content']
         db.session.commit()
-        return post_schema.dump(post, ensure_ascii=False)
+        return post_schema.load(post)
     def delete(self, post_id):
         post = Post.query.get_or_404(post_id)
         db.session.delete(post)
