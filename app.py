@@ -45,7 +45,7 @@ class PostResource(Resource):
     def get(self, post_id):
         post = Post.query.get_or_404(post_id)
         return post_schema.dump(post)
-    def patch(self, post_id):
+    def put(self, post_id):
         post = Post.query.get_or_404(post_id)
         if 'title' in request.json:
             post.title = request.json['title']
