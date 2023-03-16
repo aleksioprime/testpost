@@ -2,6 +2,7 @@ from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask_restful import Api, Resource
+from flask_cors import CORS
 import os
 
 app = Flask(__name__)
@@ -10,6 +11,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db?charset=utf8'
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 api = Api(app)
+CORS(app)
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
