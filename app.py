@@ -5,6 +5,7 @@ from flask_restful import Api, Resource
 import os
 
 app = Flask(__name__)
+app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db?charset=utf8'
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
