@@ -9,7 +9,7 @@ services:
     networks:
       - main
     ports:
-      - "5000:5000"
+      - "5002:5002"
   watchtower:
     image: containrrr/watchtower
     volumes:
